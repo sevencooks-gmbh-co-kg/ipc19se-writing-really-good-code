@@ -15,4 +15,12 @@ final class Market
             $this->priceFor($offer->good())->amount()
         );
     }
+
+    public function buyFrom(Offer $offer): Pound
+    {
+        return new Pound(
+            $offer->amount()->amount() *
+            $this->priceFor($offer->good())->amount()
+        );
+    }
 }
