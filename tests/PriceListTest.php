@@ -33,7 +33,7 @@ final class PriceListTest extends TestCase
     /**
      * @depends testHasInitialPrice
      */
-    public function testPositionCouldBeIncreased(PriceList $prices): void
+    public function testPriceCouldBeIncreased(PriceList $prices): void
     {
         $prices->increase(1);
 
@@ -43,7 +43,7 @@ final class PriceListTest extends TestCase
     /**
      * @depends testHasInitialPrice
      */
-    public function testPositionCouldBeReduced(PriceList $prices): void
+    public function testPriceCouldBeReduced(PriceList $prices): void
     {
         $prices->reduce(1);
 
@@ -53,7 +53,7 @@ final class PriceListTest extends TestCase
     /**
      * @depends testHasInitialPrice
      */
-    public function testPositionCouldBeReducedAndNotBeLessThan0(PriceList $prices): void
+    public function testPriceCouldBeReducedButNotBeLessThanPriceAtFirstPosition(PriceList $prices): void
     {
         $prices->reduce(4);
 
@@ -63,7 +63,7 @@ final class PriceListTest extends TestCase
     /**
      * @depends testHasInitialPrice
      */
-    public function testPositionCouldBeIncreasedAndNotBeMoreThanMaxPrices(PriceList $prices): void
+    public function testPriceCouldBeIncreasedButNotBeMoreThanAtLastPosition(PriceList $prices): void
     {
         $prices->increase(7);
 
