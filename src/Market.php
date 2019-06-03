@@ -5,7 +5,12 @@ final class Market
 {
     public function priceFor(Good $good): Pound
     {
-        return new Pound(5);
+        switch (get_class($good)) {
+            case Milk::class:
+                return self::getMilkPrices()->current();
+                break;
+        }
+
     }
 
     public function sellTo(Offer $offer): Pound
@@ -22,5 +27,12 @@ final class Market
             $offer->amount()->amount() *
             $this->priceFor($offer->good())->amount()
         );
+    }
+
+    public function getMilkPrices()
+    {
+        $listBuilder = new PriceListBuilder;
+
+        return $listBuilder->milkPrices();
     }
 }
