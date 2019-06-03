@@ -35,7 +35,7 @@ final class PriceListTest extends TestCase
      */
     public function testPositionCouldBeIncreased(PriceList $prices): void
     {
-        $prices->increase();
+        $prices->increase(1);
 
         $this->assertEquals(new Pound(5), $prices->current());
     }
@@ -45,8 +45,28 @@ final class PriceListTest extends TestCase
      */
     public function testPositionCouldBeReduced(PriceList $prices): void
     {
-        $prices->reduce();
+        $prices->reduce(1);
 
         $this->assertEquals(new Pound(3), $prices->current());
+    }
+
+    /**
+     * @depends testHasInitialPrice
+     */
+    public function testPositionCouldBeReducedAndNotBeLessThan0(PriceList $prices): void
+    {
+        $prices->reduce(4);
+
+        $this->assertEquals($prices->first(), $prices->current());
+    }
+
+    /**
+     * @depends testHasInitialPrice
+     */
+    public function testPositionCouldBeIncreasedAndNotBeMoreThanMaxPrices(PriceList $prices): void
+    {
+        $prices->increase(7);
+
+        $this->assertEquals($prices->last(), $prices->current());
     }
 }
