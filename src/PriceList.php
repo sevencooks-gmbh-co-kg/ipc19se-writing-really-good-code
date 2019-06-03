@@ -55,6 +55,6 @@ final class PriceList
 
     private function count(): int
     {
-        return \count($this->prices) - 1;
+        return \count($this->prices);
     }
 }
