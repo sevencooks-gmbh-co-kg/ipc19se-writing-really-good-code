@@ -6,6 +6,10 @@ use PHPUnit\Framework\TestCase;
 /**
  * @covers \ClansOfCaledonia\Good
  * @covers \ClansOfCaledonia\Milk
+ * @covers \ClansOfCaledonia\Wool
+ * @covers \ClansOfCaledonia\Cheese
+ * @covers \ClansOfCaledonia\Whisky
+ * @covers \ClansOfCaledonia\Bread
  */
 final class GoodTest extends TestCase
 {
@@ -41,7 +45,7 @@ final class GoodTest extends TestCase
     {
         $cheese = Good::cheese();
 
-        $this->assertTrue($cheese->isChesse());
+        $this->assertTrue($cheese->isCheese());
     }
 
     public function testCanBeWhisky(): void
