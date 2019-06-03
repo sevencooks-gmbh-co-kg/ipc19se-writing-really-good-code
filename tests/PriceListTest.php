@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
  */
 final class PriceListTest extends TestCase
 {
-    public function testHasInitialPrice(): void
+    public function testHasInitialPrice(): PriceList
     {
         $prices = PriceList::fromList(
             new Pound(1),
@@ -26,5 +26,27 @@ final class PriceListTest extends TestCase
         );
 
         $this->assertEquals(new Pound(4), $prices->current());
+
+        return $prices;
+    }
+
+    /**
+     * @depends testHasInitialPrice
+     */
+    public function testPositionCouldBeIncreased(PriceList $prices): void
+    {
+        $prices->increase();
+
+        $this->assertEquals(new Pound(5), $prices->current());
+    }
+
+    /**
+     * @depends testHasInitialPrice
+     */
+    public function testPositionCouldBeReduced(PriceList $prices): void
+    {
+        $prices->reduce();
+
+        $this->assertEquals(new Pound(3), $prices->current());
     }
 }
