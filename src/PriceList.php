@@ -30,4 +30,31 @@ final class PriceList
     {
         return $this->prices[$this->position];
     }
+
+    public function increase(int $factor): void
+    {
+        $newPosition = $this->position + $factor;
+        $this->position = min($newPosition, $this->count());
+    }
+
+    public function reduce(int $factor): void
+    {
+        $newPosition = $this->position - $factor;
+        $this->position = max(0, $newPosition);
+    }
+
+    public function first(): Pound
+    {
+        return $this->prices[0];
+    }
+
+    public function last(): Pound
+    {
+        return $this->prices[$this->count()];
+    }
+
+    private function count(): int
+    {
+        return \count($this->prices) - 1;
+    }
 }
