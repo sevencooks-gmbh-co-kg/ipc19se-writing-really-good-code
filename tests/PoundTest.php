@@ -21,8 +21,8 @@ final class PoundTest extends TestCase
     {
         $amount = 5;
 
-        $pount = new Pound(5);
+        $pound = new Pound(5);
 
-        $this->assertEquals(25, $pount->multiplyByAmount($amount));
+        $this->assertEquals(25, $pound->multiplyByAmount($amount));
     }
 }
